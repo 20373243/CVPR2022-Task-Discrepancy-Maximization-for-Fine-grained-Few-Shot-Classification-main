@@ -1,0 +1,16 @@
+args.model='FRN'
+args.dataset='cub_cropped'
+args.opt='sgd'
+args.lr=0.1
+args.gamma=0.1
+args.epoch=400
+args.stage=2
+args.val_epoch=20
+args.weight_decay=0.0005
+args.nesterov='true'
+args.train_way=20
+args.train_shot=5
+args.train_transform_type=0
+args.test_shot=15
+args.pre='true'
+args.gpu_num=1
