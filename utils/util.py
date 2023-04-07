@@ -22,11 +22,11 @@ def get_pre_folder(image_folder,transform_type):
     split = ['val','test']
 
     if transform_type == 0:
-        transform = transforms.Compose([transforms.Resize(92),#修改
-                                    transforms.CenterCrop(84)])
+        transform = transforms.Compose([transforms.Resize(128),#修改
+                                    transforms.CenterCrop(128)])
     elif transform_type == 1:
-        transform = transforms.Compose([transforms.Resize([92,92]),
-                                    transforms.CenterCrop(84)])
+        transform = transforms.Compose([transforms.Resize([128,128]),
+                                    transforms.CenterCrop(128)])
 
     cat_list = []
 
@@ -79,6 +79,8 @@ def dataset_path(args):
         fewshot_path = os.path.join(data_path, 'StanfordCar')
     elif args.dataset == 'stanford_dog':
         fewshot_path = os.path.join(data_path, 'StanfordDog')
+    elif args.dataset == 'medical':
+        fewshot_path = os.path.join(data_path, 'allmedical')
     else:
         fewshot_path = os.path.join(data_path, 'CUB_fewshot_cropped')
     #print(fewshot_path)
@@ -114,6 +116,8 @@ def get_save_path(args):
         path = os.path.join(path, 'StanfordCar')
     elif args.dataset == 'stanford_dog':
         path = os.path.join(path, 'StanfordDog')
+    elif args.dataset == 'medical':
+        path = os.path.join(path, 'allmedical')
 
     if args.TDM:
         detail_path = 'TDM'

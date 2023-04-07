@@ -16,14 +16,14 @@ class Proto(nn.Module):
         self.way = self.args.train_way
         self.resnet = self.args.resnet
 
-        self.resolution = 25
+        self.resolution = 64
         if self.resnet:
             self.num_channel = 640
             self.dim = 640
             self.feature_extractor = ResNet.resnet12(drop=True)
         else:
             self.num_channel = 64
-            self.dim = 64 * 25
+            self.dim = 64 * 64
             self.feature_extractor = Conv_4.BackBone(self.num_channel)
 
         self.scale = nn.Parameter(torch.FloatTensor([1.0]), requires_grad=True)

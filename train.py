@@ -7,20 +7,23 @@ from utils.util import *
 args = trainer.train_parser()
 
 args.model='FRN'
-args.dataset='aircraft'
+args.dataset='medical'
 args.opt='sgd'
 args.lr=0.1
 args.gamma=0.1
-args.epoch=400
-args.stage=3
-args.val_epoch=20
+#args.epoch=40
+#args.stage=3
+#args.val_epoch=2
 args.weight_decay=0.0005
 args.nesterov='true'
-args.train_way=5 #20
-args.train_shot=5
-args.train_transform_type=0
-args.test_shot=15
-args.pre='true'
+args.train_way=2 #20
+#args.train_shot=5
+args.test_way=2
+#args.test_shot=2
+#args.test_query_shot=2
+args.test_transform_type=1
+args.train_transform_type=1
+args.pre='False'
 args.gpu_num=1
 
 

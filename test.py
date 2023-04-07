@@ -14,7 +14,7 @@ def test_parser():
     parser.add_argument("--dataset", choices=['cub_cropped', 'cub_raw',
                                               'aircraft',
                                               'meta_iNat', 'tiered_meta_iNat',
-                                              'stanford_car', 'stanford_dog'], default='cub_cropped')
+                                              'stanford_car', 'stanford_dog','medical'], default='medical')
     parser.add_argument("--TDM", action="store_true")
 
     args = parser.parse_args()
@@ -49,28 +49,28 @@ if args.gpu_num > 1:
 
 with torch.no_grad():
     if args.model == 'FRN':
-        for shot in [1, 5]:
+        for shot in [10, 20]:
             pre = True
-            transform_type = None
+            transform_type = 1
 
             mean, interval = meta_test(data_path=test_path,
                                        model=model,
                                        way=args.train_way,
                                        shot=shot,
-                                       pre=pre,
+                                       pre=args.pre,
                                        transform_type=transform_type,
                                        gpu_num=args.gpu_num)
             logger.info('%d-way-%d-shot acc: %.3f\t%.3f' % (args.train_way, shot, mean, interval))
 
     else:
         pre = True
-        transform_type = None
+        transform_type = 1
 
         mean, interval = meta_test(data_path=test_path,
                                    model=model,
                                    way=args.train_way,
                                    shot=args.train_shot,
-                                   pre=pre,
+                                   pre=args.pre,
                                    transform_type=transform_type,
                                    gpu_num=args.gpu_num)
         logger.info('%d-way-%d-shot acc: %.3f\t%.3f' % (args.train_way, args.train_shot, mean, interval))

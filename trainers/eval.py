@@ -18,7 +18,7 @@ def get_score(acc_list):
 
 
 def meta_test(data_path, model, way, shot, pre, transform_type, gpu_num,
-              query_shot=16, trial=10000):
+              query_shot=16, trial=1000):
 
     eval_loader = dataloaders.meta_test_dataloader(data_path=data_path,
                                                    way=way,

@@ -25,7 +25,7 @@ class FRN(nn.Module):
             self.feature_extractor = Conv_4.BackBone(num_channel)
 
         self.d = num_channel
-        self.resolution = 25
+        self.resolution = 64
 
         self.scale = nn.Parameter(torch.FloatTensor([1.0]), requires_grad=True)
         self.r = nn.Parameter(torch.zeros(2), requires_grad=True)

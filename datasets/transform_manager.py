@@ -31,10 +31,10 @@ def get_transform(is_training=None,transform_type=None,pre=None):
     if is_training:
 
         if transform_type == 0:
-            size_transform = transforms.RandomResizedCrop(84)
+            size_transform = transforms.RandomResizedCrop(128)
             # 将给定图像随机裁剪为不同的大小和宽高比，然后缩放所裁剪得到的图像为制定的大小84*84；
         elif transform_type == 1:
-            size_transform = transforms.RandomCrop(84,padding=8)
+            size_transform = transforms.RandomCrop(128,padding=8)
         else:
             raise Exception('transform_type must be specified during training!')
         
@@ -53,13 +53,13 @@ def get_transform(is_training=None,transform_type=None,pre=None):
     else:
         
         if transform_type == 0:
-            size_transform = transforms.Compose([transforms.Resize(92),
-                                                transforms.CenterCrop(84)])
+            size_transform = transforms.Compose([transforms.Resize(128),
+                                                transforms.CenterCrop(128)])
             #transforms.Resize将图片短边缩放至x，长宽比保持不变：
             #transforms.CenterCrop 对图片中心进行裁剪
         elif transform_type == 1:
-            size_transform = transforms.Compose([transforms.Resize([92,92]),
-                                                transforms.CenterCrop(84)])
+            size_transform = transforms.Compose([transforms.Resize([128,128]),
+                                                transforms.CenterCrop(128)])
             #transforms.Resize([92,92]) 同时指定长宽
         elif transform_type == 2:
             # for tiered-imagenet and (tiered) meta-inat where val/test images are already 84x84

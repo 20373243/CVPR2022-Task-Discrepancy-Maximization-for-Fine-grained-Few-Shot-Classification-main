@@ -6,7 +6,7 @@ import logging
 import numpy as np
 import argparse
 from tqdm import tqdm
-from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 from .eval import meta_test
 sys.path.append('..')
 from datasets import dataloaders
@@ -55,7 +55,7 @@ def train_parser():
     parser.add_argument("--pre", help="whether use pre-resized 84x84 images for val and test", action="store_true")
     parser.add_argument("--no_val", help="don't use validation set, just save model at final timestep", action="store_true")
     parser.add_argument("--train_way", help="training way", type=int)# add
-    parser.add_argument("--test_way", help="test way", type=int, default=5)
+    parser.add_argument("--test_way", help="test way", type=int, default=2)
     parser.add_argument("--train_shot", help="number of support images per class for meta-training and meta-testing during validation", type=int)# add
     parser.add_argument("--test_shot", nargs='+', help="number of support images per class for meta-testing during final test", type=int)#add
     parser.add_argument("--train_query_shot", help="number of query images per class during meta-training", type=int, default=15)
@@ -69,7 +69,7 @@ def train_parser():
     parser.add_argument("--dataset", choices=['cub_cropped', 'cub_raw',
                                               'aircraft',
                                               'meta_iNat', 'tiered_meta_iNat',
-                                              'stanford_car', 'stanford_dog'])
+                                              'stanford_car', 'stanford_dog','medical'])
     parser.add_argument("--TDM", action="store_true")
     parser.add_argument("--alpha", type=float, default=0.5)
     parser.add_argument("--beta", type=float, default=0.5)
@@ -299,7 +299,7 @@ class Train_Manager:
                                            pre=args.pre,
                                            transform_type=args.test_transform_type,
                                            query_shot=args.test_query_shot,
-                                           trial=10000,
+                                           trial=1000,
                                            gpu_num=args.gpu_num
                                            )
 
